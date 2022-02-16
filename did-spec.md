@@ -14,60 +14,33 @@ This document is licensed under  a [Creative Commons Attribution 4.0 Internation
 
 ## Introduction
 
-[Mahadum Digital Access](https://www.ibm.com/products/digital-health-pass), 
-part of IBM Watson Works, is a solution that allows people to attest their 
-health status against any potential verifier, such as employers, event
-organizers, etc.
+Mahadum Digital Access, is a solution that allows people to attest their 
+School records and credentials against any potential verifier, such as employers, schools, student bodies, etc.
 
-In order to foster deployability and compatibility with existing technologies,
-IBM Digital Health Pass relies on current standards and specifications as much as
-possible. In the context of digital identities, W3C's Standards for 
-Decentralized IDentities ([DIDs](https://www.w3.org/TR/did-core/)) and 
-Verifiable Credentials ([VCs](https://www.w3.org/TR/vc-data-model/)) are rapidly
-gaining traction, especially in blockchain-related domains.
-
-In the following, we describe how the DID specification fits our setting.
-The Health Pass setting builds on an [Hyperledger 
-Fabric](https://www.hyperledger.org/use/fabric) blockchain system. The following
+We elaborate how the DID specification fits our process.
+The setting builds on an [Hyperledger Fabric](https://www.hyperledger.org/use/fabric) blockchain system. The following
 entities are involved in the system:
 
-- **Health Authorities**. Authorities that control the network. They can be
-  Health Ministries, local branches of national governments, etc. for use
-  cases aimed at the general public; but also companies and testing centers
-  for scenarios aimed at private use of the system. Health Authorities own the 
-  network, issue certificates for Health Credential Issuers, and publish schemas
+- **School Authorities**. Authorities that control the network. They are mostly schools and educational bodies. 
+  Schools and educational bodies own the network, issue certificates for Health Credential Issuers, and publish schemas
   that the latter need to follow in order to issue health credentials for end 
   users.
-- **Health Credential Issuers**. Test Centers, Hospitals, etc. They join the
-  network after approval by the Health Authorities. They have Fabric clients 
-  with valid Fabric identities that they use to interact with the network, and
+- **Health Credential Issuers**. Schools and Educational bodies. They are part of the
+  network . They have Fabric clients with valid Fabric identities that they use to interact with the network, and
   from which their DIDs are derived. They can associate new keypairs to their
   DID, that they will use to issue health credentials to end users.
-- **Credential Holders**. Citizens, employees, etc. They receive credentials by 
-  Health Credential Issuers. They will receive health credentials from Health 
+- **Credential Holders**. Students. They will receive educational credentials from  
   Credential Issuers. Note that end users do not receive DIDs, but we mention 
   them here to provide a complete picture.
 - **Verifiers**. Companies, businesses, public transportation systems, etc.
-  that need to verify the health status of Credential Holders.
-
-Concerning their role in the blockchain system _per se_, Health Authorities
-are expected to run (orderers and) peers, Health Certificate Issuers need to 
-have clients, and End Users are completely agnostic.
+  that need to verify the Educational Credential Holders.
 
 ## DIDs
 
-DIDs are used to manage Health Authorities' cryptographic material. In a 
-nutshell, Health Pass keeps track of the public keys of Health Authorities
-via DIDs. First, a Health Authority needs to be onboarded, meaning that it
-will have a Fabric identity issued from a valid Membership Service Provider
-(MSP). Then, with this Fabric identity, the Health Authority can trigger the
-creation of a DID. The controller of the DID will be the actual Health 
-Authority. 
-
-Besides the usual DID methods, which are integrated within the
-Fabric ecosystem, and thus leverage some of its features, Health Pass also
-defines a DID Syntax with specific rules. The following sections expand on
-this introductory note.
+DIDs are used to manage School Authorities' cryptographic material. Mahadum Pass
+tracks the public keys of health authorities via DIDs. The School Authority is 
+onboarded and given an network identity. With the network identity can be used by 
+the School Authority to initiate the creation of a DID.
 
 ### DID Syntax
 
