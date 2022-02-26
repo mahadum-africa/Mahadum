@@ -37,10 +37,10 @@ entities are involved in the system:
 
 ## DIDs
 
-DIDs are used to manage School Authorities' cryptographic material. Mahadum Pass
-tracks the public keys of health authorities via DIDs. The School Authority is 
-onboarded and given an network identity. With the network identity can be used by 
-the School Authority to initiate the creation of a DID.
+DIDs are used to manage School Authorities' cryptographic material. Mahadum 
+tracks the public keys of schools and institutions via DIDs. The School Authority is 
+onboarded and given an network identity. The network identity can be used by 
+the School or Institution to initiate the creation of a DID.
 
 ### DID Syntax
 
@@ -50,14 +50,13 @@ identifying the entity they represent. For this purpose, a syntax in
 usually defined. In our case, this grammar is as follows:
 
 ```
-did        = "did:hpass:" genesishash ":" identifier
-genesishash      = 64(hexdigit)
+did        = "did:mahadum:" identifier
 identifier = 64(hexdigit)
 hexdigit     = "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "a" / "b" / "c"
     / "d" / "e" / "f"
 ```
 
-Where `did` and `hpass` are literals that define our Health Pass namespace.
+Where `did` and `mahadum` are literals that define our namespace.
 `genesishash` is a string containing the (hex-encoded SHA256) hash of the 
 genesis block pertaining to the Fabric network where the DID was created. Its 
 purpose is to prevent "migration" of DIDs (we expand on this in the 
@@ -72,12 +71,12 @@ Alternatively, the previous regular expression can be defined in POSIX BRE
 format as follows:
 
 ```
-"^did:hpass:[0-9a-f]{64}:[0-9a-f]{64}"
+"^did:hpass:[0-9a-f]{64}"
 ```
 
 ### DID Documents
 
-Every DID has an associated DID document, which contains the necessary 
+Every DID has an associated DID document, this contains all the necessary 
 information to cryptographically verify the validity of the entity it makes
 reference to, or operations performed by this entity.
 
@@ -87,12 +86,12 @@ structure (the hex-encoded hashes are trimmed for the sake of presentation):
 ```
 {
     "@context": "https://www.w3.org/ns/did/v1",
-    "created": "2020-11-04T16:00:51Z",
-    "id": "did:hpass:dc83e354...8c1ed35a:0773762b...d488c861",
+    "created": "2022-02-020T12:00:51Z",
+    "id": "did:mahadum:0853713c...d5563f61",
     "publicKey": [
         {
-            "controller": "did:hpass:dc83e354...8c1ed35a:0773762b...d488c861",
-            "id": "did:hpass:dc83e354...8c1ed35a:0773762b...d488c861#key-1",
+            "controller": "did:mahadum:0853713c...d5563f61",
+            "id": "did:mahadum:0853713c...d5563f61#key-1",
             "publicKeyJwk": {
                 "crv": "P-256",
                 "kty": "EC",
@@ -102,7 +101,7 @@ structure (the hex-encoded hashes are trimmed for the sake of presentation):
             "type": "JsonWebKey2020"
         }
     ],
-    "updated": "2020-11-04T16:00:51Z"
+    "updated": "2022-02-24T16:00:51Z"
 }
 ```
 
