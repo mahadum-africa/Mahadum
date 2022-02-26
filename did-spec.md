@@ -1,6 +1,5 @@
 # Mahadum Digital ID Method
 
-This document is licensed under  a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
 
 ## ToC
 
@@ -11,6 +10,45 @@ This document is licensed under  a [Creative Commons Attribution 4.0 Internation
   - [CRUD Operations](#crud-operations)
   - [Security Considerations](#security-considerations)
   - [Privacy Considerations](#privacy-considerations)
+
+
+# Introduction
+
+Mahadum, part of BDL Technologies Verifiable credential (VC) and Decentralised Identity platforms, is a solution that allows people to attest their academic accomplishments  and competencies against any potential verifier, such as employers, academic institutions, etc.
+
+Our mission is to create a trusted, distributed, and shared infrastructure that becomes the standard for issuing, storing, displaying, and verifying digital credentials in Africa.
+
+BDL Mahadum platform is primarily concerned with use-cases in higher education, but we see our work as part of a broader effort to bridge post-secondary and lifelong learning, connecting traditional institutions of higher education, non-formal education
+providers, as well as the workplace, through interoperable standards such as W3C Verifiable Credential and IMS Global CLR standard .
+
+Our goal is to contribute to an education landscape in Africa that increases learner agency and promotes more equitable participation and inclusion. Finally, we expand on previous EdTech efforts in a number of important ways:
+- More flexible ways to express the identities of issuers and learners that tie into existing university services.
+- More reliable revocation mechanisms and credential lifecycle management.
+- More direct learner agency over one's lifelong learning record.
+- Higher level of consistency between the machine-readable data of the credential, the human-readable visual representation, and the necessary output formats—paper or digital.
+
+In order to foster deployability and compatibility with existing technologies, the Mahadum platform relies on current standards and specifications as much as possible. In the context of digital identities, W3C's Standards for Decentralized IDentities (DIDs) and Verifiable Credentials (VCs) are rapidly gaining traction, especially in blockchain-related domains.
+
+In the following, we describe how the DID specification fits our setting. Mahadum builds on an Hyperledger Fabric blockchain system. The following entities are involved in the system:
+
+Education Authorities. Authorities that control the network. They can be Education Ministries, Schools, local branches of national governments, etc. for use cases aimed at the general public; but also companies and trade organisations for scenarios aimed at private use of the system. Education Authorities own the network, issue certificates for Health Credential Issuers, and publish schemas that the latter need to follow in order to issue health credentials for end users.
+Health Credential Issuers. Test Centers, Hospitals, etc. They join the network after approval by the Health Authorities. They have Fabric clients with valid Fabric identities that they use to interact with the network, and from which their DIDs are derived. They can associate new keypairs to their DID, that they will use to issue health credentials to end users.
+Credential Holders. Citizens, employees, etc. They receive credentials by Health Credential Issuers. They will receive health credentials from Health Credential Issuers. Note that end users do not receive DIDs, but we mention them here to provide a complete picture.
+
+Verifiers. Companies, businesses, public transportation systems, etc. that need to verify the health status of Credential Holders.
+Concerning their role in the blockchain system per se, Health Authorities are expected to run (orderers and) peers, Health Certificate Issuers need to have clients, and End Users are completely agnostic.
+
+
+# DIDs
+DIDs are used to manage Blockchain Network Participant's cryptographic material. In a nutshell, Mahadum platform keeps track of the public keys of Blockchain Network Participant’s via DIDs. First, a participant (education Authorities, higher education providers, trade organisations) needs to be onboarded, meaning that it will have a Fabric identity issued from a valid Membership Service Provider (MSP). Then, with this Fabric identity, the participant can trigger the creation of a DID.
+
+Besides the usual DID methods, which are integrated within the Fabric ecosystem, and thus leverage some of its features, Mahadum also defines a DID Syntax with specific rules. The following sections expand on this introductory note.
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
 
