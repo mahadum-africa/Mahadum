@@ -45,6 +45,47 @@ DIDs are used to manage Blockchain Network Participant's cryptographic material.
 Besides the usual DID methods, which are integrated within the Fabric ecosystem, and thus leverage some of its features, Mahadum also defines a DID Syntax with specific rules. The following sections expand on this introductory note.
 
 
+# DID Method Schema
+
+The DID is made up of two key identifiers, **network_id/network_name** and **account_id/account_name** The chain specific identifier is followed by the name of an account on that chain, separated by a colon.
+
+`did:mahadum:{network_id/network_name}:{account_id}`
+Due to the strict requirements registered chain names have to adhere to, a clash with the chain id schema is impossible.
+
+These are the properties that make up an Mahadum DID:
+
+- `{account_id//network_name}` is the id/name of the account on the chain.
+- `{chain_id}` is the hash of the genesis block of the chain, expressed in a 64 character string representing a hexadecimal number.
+All property schemas are provided with a Regex specification.
+
+# DID Documents
+Every DID has an associated DID document, this contains all the necessary information to cryptographically verify the validity of the credentail entity it makes reference to.
+
+DID documents are JSON-LD objects with the following structure (the hex-encoded hashes are trimmed for the sake of presentation):
+
+```
+{
+    "@context": "https://www.w3.org/ns/did/v1",
+    "created": "2022-02-020T12:00:51Z",
+    "id": "did:mahadum:0853713cd5563f61:0853713cd5563f61",
+    "publicKey": [
+        {
+            "controller": "did:mahadum:0853713cd5563f61:0853713cd5563f61",
+            "id": "did:mahadum:did:mahadum:0853713cd5563f61:0853713cd5563f61#key-1",
+            "publicKeyJwk": {
+                "crv": "P-256",
+                "kty": "EC",
+                "x": "81iuFbmXKVxy1D8DTUjVpRhaLCXcuP4KKcmYXz2o760",
+                "y": "P3wfEzeFYBPazUp0rd0dy3pXW_Sriz5W_IIKCIDnkeA"
+            },
+            "type": "JsonWebKey2020"
+        }
+    ],
+    "updated": "2022-02-24T16:00:51Z"
+}
+```
+
+
 
 
 
