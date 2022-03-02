@@ -91,10 +91,10 @@ To specify the value of a publicKey, we use the publicKeyJwk inner object. We us
 
 Finally, public keys have their own DID, specified via DID fragments. This is because one DID may have multiple associated public keys. The #key-N suffix allows identifying different keys related to the same entity.
 
-CRUD Operations
+# CRUD Operations
 DIDs can be managed through a chaincode in Hyperledger Fabric that implements the typical CRUD methods. In what follows, we assume that an academic Credential Issuer has been approved to join the system, has obtained a Hyperledger Fabric client identity (X.509 certificate), and is running a Fabric Client.
 
-Create
+### Create
 Input: An ECDSA public key.
 Output: The produced DID document.
 Requirements: The transaction needs to originate from a Fabric Client owned by an academic Credential Issuer.
@@ -103,13 +103,13 @@ The academic Credential Issuer uses its Fabric client to execute the DID Create 
 The produced DID document will have the structure defined in the DID Document Section, where the genesis block hash is taken from the network information, and the MSP identifier and Fabric identity are taken from the transaction caller.
 
 
-Read
+### Read
 Input: The DID.
 Output: The associated DID document.
 Any entity with access to the Fabric network can query DID documents by their associated DID. The DID document is fetched directly from the Fabric network that stores it. Therefore, its authenticity is derived from the properties of the blockchain system.
 
 
-*Update*
+### Update
 Input: The certificate associated to the new public key to be added to the caller's DID.
 Output: The DID document that was updated.
 Requirements: The transaction needs to originate from a Fabric Client owned by the academic Credential Issuer and authenticated with the Fabric identity used in Create.
@@ -117,7 +117,7 @@ The DID will be extracted from the certificate associated to the chaincode reque
 
 The received key is added to the keys that were already associated to the given DID. If the last key added to the DID had index N, the new key will receive index N+1.
 
-Delete / Deactivate
+### Delete / Deactivate
 Input: The certificate associated to the public key to be deleted from the caller's DID.
 Output: The DID document from which the public key was deleted.
 Requirements: The transaction needs to originate from a Fabric Client owned by the academic Credential Issuer and authenticated with the Fabric identity used in Create.
